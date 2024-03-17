@@ -1,3 +1,11 @@
+"""
+Menu Module
+
+This module provides the main menu interface for the Employee Management System.
+Users can interact with the application through the menu options, which include
+adding, deleting, updating employee information, generating reports, and exiting
+the application.
+"""
 from .employee_operations import add_employee, delete_employee, update_employee
 from report_generation import generate_reports
 
