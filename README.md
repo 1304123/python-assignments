@@ -83,5 +83,19 @@ This section offers practical advice on writing clean and maintainable code, as 
 
 By following these tips and best practices, you can write cleaner, more readable code and build more robust applications. Remember that writing good code is an ongoing process of learning and refinement, so don't hesitate to seek feedback and iterate on your codebase.
 
+## Resources and Support
+
+This section provides helpful resources and support channels for students to enhance their understanding of Python programming concepts and seek assistance when needed.
+
+### Relevant Documentation Links:
+- [Python Official Documentation](https://docs.python.org/3/): The official Python documentation provides comprehensive information on Python's syntax, standard libraries, and built-in functions.
+- [Python Tutorial](https://docs.python.org/3/tutorial/index.html): The Python tutorial offers a guided introduction to Python programming, covering basic to advanced topics with examples.
+- [Python Data Structures](https://docs.python.org/3/tutorial/datastructures.html): This section of the Python tutorial explains various data structures available in Python, including lists, dictionaries, sets, and tuples.
+- [File Handling in Python](https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files): Learn how to perform file handling operations such as reading from and writing to files in Python.
+
+### Example Code Snippets:
+- [Python Code Examples](https://www.programiz.com/python-programming/examples): Programiz provides a collection of Python code examples covering a wide range of topics, from basic syntax to advanced concepts.
+
+
 
 
