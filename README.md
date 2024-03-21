@@ -38,8 +38,8 @@ This section outlines the key functionalities expected from the application and 
 - Implement the following report functionalities:
     1. List of departments.
     2. List of all employees with ID, full name, and department.
-    3. List of all departments with "the Average age and salary of all employees in each department.
-    4. List of employees in each department with ID, full name, date of birth, salary, and total salary for department's employees.
+    3. List of all departments with "the Average age and salary of all employees in each department.(BONUS)
+    4. List of employees in each department with ID, full name, date of birth, salary, and total salary for department's employees.(BONUS)
 
 
 ## Guidance on Implementation
