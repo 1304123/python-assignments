@@ -1,0 +1,74 @@
+import sqlite3
+from datetime import datetime, date
+
+# Connect to the SQLite database
+conn = sqlite3.connect('company.db')
+c = conn.cursor()
+
+# Create tables if not exist
+c.execute('''CREATE TABLE IF NOT EXISTS departments (
+                id INTEGER PRIMARY KEY,
+                name TEXT)''')
+
+c.execute('''CREATE TABLE IF NOT EXISTS employees (
+                id INTEGER PRIMARY KEY,
+                full_name TEXT,
+                department_id INTEGER,
+                date_of_birth DATE,
+                salary REAL)''')
+
+# Sample data insertion
+c.execute("INSERT INTO departments (name) VALUES ('HR')")
+c.execute("INSERT INTO departments (name) VALUES ('Finance')")
+
+c.execute("INSERT INTO employees (full_name, department_id, date_of_birth, salary) VALUES (?, ?, ?, ?)",
+          ('John Doe', 1, '1990-05-15', 50000))
+c.execute("INSERT INTO employees (full_name, department_id, date_of_birth, salary) VALUES (?, ?, ?, ?)",
+          ('Jane Smith', 2, '1985-10-20', 60000))
+c.execute("INSERT INTO employees (full_name, department_id, date_of_birth, salary) VALUES (?, ?, ?, ?)",
+          ('Mike Johnson', 1, '1988-03-25', 55000))
+
+conn.commit()
+
+# Function to get the list of departments
+def list_departments():
+    c.execute("SELECT * FROM departments")
+    departments = c.fetchall()
+    return departments
+
+# Function to get the list of all employees with ID, full name, and department
+def list_all_employees():
+    c.execute("SELECT employees.id, employees.full_name, departments.name FROM employees JOIN departments ON employees.department_id = departments.id")
+    employees = c.fetchall()
+    return employees
+
+# Function to get the list of all departments with average age and salary of all employees
+def department_stats():
+    c.execute("SELECT departments.name, AVG(strftime('%Y', 'now') - strftime('%Y', employees.date_of_birth)) AS avg_age, AVG(employees.salary) AS avg_salary FROM employees JOIN departments ON employees.department_id = departments.id GROUP BY departments.id")
+    department_stats = c.fetchall()
+    return department_stats
+
+# Function to get the list of employees in each department with ID, full name, date of birth, salary, and total salary for department's employees
+def employees_by_department():
+    c.execute("SELECT departments.name, employees.id, employees.full_name, employees.date_of_birth, employees.salary, SUM(employees.salary) OVER (PARTITION BY employees.department_id) AS total_department_salary FROM employees JOIN departments ON employees.department_id = departments.id ORDER BY departments.id")
+    employees_by_department = c.fetchall()
+    return employees_by_department
+
+# Sample function calls
+print("List of departments:")
+print(list_departments())
+print()
+
+print("List of all employees with ID, full name, and department:")
+print(list_all_employees())
+print()
+
+print("List of all departments with average age and salary of all employees:")
+print(department_stats())
+print()
+
+print("List of employees in each department with ID, full name, date of birth, salary, and total salary for department's employees:")
+print(employees_by_department())
+
+# Close the connection
+conn.close()
